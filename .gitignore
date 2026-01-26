@@ -14,7 +14,8 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
 # Documentation and guide files in database folder
 # (Keep only SQL files for assignment submission)
 database/*.md
-database/image
+database/image/
