@@ -163,8 +163,17 @@ footer {
 }
 
 footer p {
-  margin: 0;
+  margin: 0.5rem 0;
   font-size: 0.95rem;
+}
+
+footer a {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: white;
 }
 
 /******* Responsive Design ***************/
@@ -312,5 +321,102 @@ footer p {
   #inv-display {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+/******* Vehicle Detail Page Styles ***************/
+#vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-image {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.vehicle-image img:hover {
+  transform: scale(1.02);
+}
+
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vehicle-info h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+.vehicle-info p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  line-height: 1.8;
+}
+
+.vehicle-info strong {
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+.vehicle-price {
+  font-size: 1.8rem !important;
+  color: var(--accent-color) !important;
+  font-weight: 700 !important;
+  padding: 1rem;
+  background-color: var(--light-color);
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid var(--accent-color);
+}
+
+/******* Responsive Vehicle Detail ***************/
+@media (max-width: 992px) {
+  #vehicle-detail {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+  
+  .vehicle-info h2 {
+    font-size: 1.6rem;
+  }
+  
+  .vehicle-info p {
+    font-size: 1rem;
+  }
+  
+  .vehicle-price {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #vehicle-detail {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  .vehicle-info h2 {
+    font-size: 1.4rem;
   }
 }
