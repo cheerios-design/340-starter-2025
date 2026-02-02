@@ -420,3 +420,212 @@ footer a:hover {
     font-size: 1.4rem;
   }
 }
+
+/******* Home Page Hero Section ***************/
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: var(--light-color);
+  border-radius: 10px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+.hero-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  color: var(--dark-color);
+}
+
+.hero-features li {
+  padding: 0.3rem 0;
+}
+
+.btn-own {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.btn-own:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+/******* Home Content Grid ***************/
+.home-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+/******* Upgrades Section ***************/
+.upgrades h2,
+.reviews h2 {
+  font-size: 1.8rem;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.upgrade-item {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.upgrade-item:hover {
+  transform: scale(1.05);
+  background-color: var(--primary-color);
+}
+
+.upgrade-item a {
+  display: block;
+  color: white;
+}
+
+.upgrade-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background-color: var(--light-color);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.upgrade-item h3 {
+  color: white;
+  font-size: 1rem;
+  margin: 0.5rem 0 0 0;
+  font-weight: 500;
+}
+
+/******* Reviews Section ***************/
+.reviews-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reviews-list li {
+  background-color: var(--light-color);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--accent-color);
+  border-radius: 5px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.reviews-list li:hover {
+  background-color: white;
+  border-left-width: 6px;
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/******* Responsive Home Page ***************/
+@media (max-width: 992px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-content {
+    align-items: center;
+  }
+  
+  .btn-own {
+    max-width: 250px;
+  }
+  
+  .home-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-features {
+    font-size: 1.1rem;
+  }
+  
+  .upgrades-grid {
+    gap: 1rem;
+  }
+  
+  .upgrade-item {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  
+  .hero-features {
+    font-size: 1rem;
+  }
+  
+  .upgrades-grid {
+    grid-template-columns: 1fr;
+  }
+}
