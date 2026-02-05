@@ -19,3 +19,7 @@ node_modules
 # (Keep only SQL files for assignment submission)
 database/*.md
 database/image/
+
+# Personal documentation files
+DEPLOYMENT.md
+TESTING-CHECKLIST.md
