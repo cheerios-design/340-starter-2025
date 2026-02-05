@@ -814,3 +814,105 @@ form + p a {
 .account-actions a:hover {
   background-color: var(--primary-color);
 }
+
+/******* Inventory Management Styles ***************/
+.management-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.management-container h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.management-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.management-card {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.management-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.management-card h3 {
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.management-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.management-card .btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.management-card .btn:hover {
+  background-color: var(--primary-color);
+}
+
+form .form-note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+form textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(44, 123, 194, 0.1);
+}
+
+form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+form select:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(44, 123, 194, 0.1);
+}
