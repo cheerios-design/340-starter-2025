@@ -629,3 +629,125 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/******* Account Forms Styles ***************/
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 0;
+}
+
+legend {
+  font-family: var(--header-font);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  padding: 0 0.5rem;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(44, 123, 194, 0.1);
+}
+
+form input:required:valid {
+  border-color: #27ae60;
+}
+
+form input:required:invalid {
+  border-color: #e74c3c;
+}
+
+form button[type="submit"],
+form .btn {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover,
+form .btn:hover {
+  background-color: var(--primary-color);
+}
+
+.password-requirements {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.password-requirements ul {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.password-requirements li {
+  margin: 0.2rem 0;
+}
+
+ul.notice {
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 1rem 1rem 1rem 2rem;
+  margin: 1rem 0;
+  list-style-position: inside;
+}
+
+ul.notice li {
+  color: #856404;
+  margin: 0.3rem 0;
+}
+
+form + p {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+form + p a {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
