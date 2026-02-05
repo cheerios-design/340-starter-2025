@@ -99,6 +99,20 @@ a:hover {
   color: white;
   font-size: 0.95rem;
   padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#tools a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#tools span {
+  color: white;
+  margin-right: 1rem;
+  font-size: 0.95rem;
+}
+  padding: 0.5rem 1rem;
   border: 2px solid white;
   border-radius: 5px;
   font-weight: 500;
@@ -750,4 +764,53 @@ form + p {
 form + p a {
   color: var(--secondary-color);
   font-weight: 600;
+}
+
+/******* Account Management Styles ***************/
+.account-info {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.account-info h2 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.account-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.account-actions {
+  margin: 2rem 0;
+}
+
+.account-actions h3 {
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.account-actions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.account-actions li {
+  margin: 0.8rem 0;
+}
+
+.account-actions a {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.account-actions a:hover {
+  background-color: var(--primary-color);
 }

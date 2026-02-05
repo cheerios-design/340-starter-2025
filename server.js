@@ -16,6 +16,7 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -41,6 +42,10 @@ app.use(function(req, res, next){
 // Body Parser Middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+
+// JWT Token Check
+app.use(require("./utilities/account-middleware").checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
