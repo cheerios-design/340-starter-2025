@@ -14,6 +14,18 @@ function checkLogin(req, res, next) {
 }
 
 /* ****************************************
+ * Check Account Type (Employee or Admin)
+ **************************************** */
+function checkAccountType(req, res, next) {
+  if (res.locals.loggedin && (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin")) {
+    next()
+  } else {
+    req.flash("notice", "You do not have permission to access this resource.")
+    return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
  * Middleware to check token validity
  **************************************** */
 function checkJWTToken(req, res, next) {
@@ -37,4 +49,4 @@ function checkJWTToken(req, res, next) {
   }
 }
 
-module.exports = { checkJWTToken, checkLogin }
+module.exports = { checkJWTToken, checkLogin, checkAccountType }

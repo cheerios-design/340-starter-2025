@@ -4,6 +4,7 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require('../utilities/inventory-validation')
+const { checkAccountType } = require("../utilities/account-middleware")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
@@ -12,48 +13,51 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInventoryId))
 
 // Route to build management view
-router.get("/", utilities.handleErrors(invController.buildManagement))
+router.get("/", checkAccountType, utilities.handleErrors(invController.buildManagement))
 
 // Route to build add classification view
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+router.get("/add-classification", checkAccountType, utilities.handleErrors(invController.buildAddClassification))
 
 // Process add classification
 router.post(
   "/add-classification",
+  checkAccountType,
   invValidate.classificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
 )
 
 // Route to build add inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+router.get("/add-inventory", checkAccountType, utilities.handleErrors(invController.buildAddInventory))
 
 // Process add inventory
 router.post(
   "/add-inventory",
+  checkAccountType,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
 )
 
 // Route to get inventory items by classification as JSON (for AJAX)
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", checkAccountType, utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to build edit inventory view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+router.get("/edit/:inv_id", checkAccountType, utilities.handleErrors(invController.buildEditInventory))
 
 // Process update inventory
 router.post(
   "/update/",
+  checkAccountType,
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 )
 
 // Route to build delete confirmation view
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteConfirmation))
+router.get("/delete/:inv_id", checkAccountType, utilities.handleErrors(invController.buildDeleteConfirmation))
 
 // Process delete inventory
-router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
+router.post("/delete/", checkAccountType, utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router

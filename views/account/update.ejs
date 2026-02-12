@@ -1,0 +1,71 @@
+<h1><%= title %></h1>
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<h2>Update Account Information</h2>
+<form action="/account/update" method="post">
+  <fieldset>
+    <legend>Update Your Account</legend>
+    
+    <label for="account_firstname">First Name:</label>
+    <input 
+      type="text" 
+      id="account_firstname" 
+      name="account_firstname" 
+      required 
+      value="<%= locals.account_firstname || '' %>"
+      placeholder="Enter your first name">
+    
+    <label for="account_lastname">Last Name:</label>
+    <input 
+      type="text" 
+      id="account_lastname" 
+      name="account_lastname" 
+      required 
+      value="<%= locals.account_lastname || '' %>"
+      placeholder="Enter your last name">
+    
+    <label for="account_email">Email Address:</label>
+    <input 
+      type="email" 
+      id="account_email" 
+      name="account_email" 
+      required 
+      value="<%= locals.account_email || '' %>"
+      placeholder="Enter a valid email address">
+    
+    <input type="hidden" name="account_id" value="<%= locals.account_id || '' %>">
+    
+    <button type="submit" class="btn">Update Account</button>
+  </fieldset>
+</form>
+
+<h2>Change Password</h2>
+<p>Passwords must be at least 12 characters and contain at least 1 uppercase, 1 lowercase, 1 number and 1 special character.</p>
+<form action="/account/update-password" method="post">
+  <fieldset>
+    <legend>Change Your Password</legend>
+    
+    <label for="account_password">New Password:</label>
+    <input 
+      type="password" 
+      id="account_password" 
+      name="account_password" 
+      required 
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      placeholder="Enter new password">
+    
+    <input type="hidden" name="account_id" value="<%= locals.account_id || '' %>">
+    
+    <button type="submit" class="btn">Change Password</button>
+  </fieldset>
+</form>
+
+<p><a href="/account/">Return to Account Management</a></p>
