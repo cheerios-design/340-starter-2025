@@ -36,4 +36,18 @@ router.post(
   utilities.handleErrors(invController.addInventory)
 )
 
+// Route to get inventory items by classification as JSON (for AJAX)
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to build edit inventory view
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+
+// Process update inventory
+router.post(
+  "/update/",
+  invValidate.inventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
+
 module.exports = router
