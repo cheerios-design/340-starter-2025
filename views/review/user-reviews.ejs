@@ -1,0 +1,34 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<% if (reviews && reviews.length > 0) { %>
+  <div class="user-reviews-list">
+    <% reviews.forEach(review => { %>
+      <div class="review-item">
+        <div class="review-header">
+          <h3><a href="/inv/detail/<%= review.inv_id %>"><%= review.inv_year %> <%= review.inv_make %> <%= review.inv_model %></a></h3>
+          <p class="review-date"><%= new Date(review.review_date).toLocaleDateString() %></p>
+        </div>
+        
+        <div class="review-rating">
+          <% for(let i = 0; i < review.review_rating; i++) { %>★<% } %>
+          <% for(let i = review.review_rating; i < 5; i++) { %>☆<% } %>
+          (<%= review.review_rating %>/5)
+        </div>
+        
+        <div class="review-content">
+          <p><%= review.review_text %></p>
+        </div>
+        
+        <div class="review-actions">
+          <a href="/review/edit/<%= review.review_id %>" class="btn-small">Edit</a>
+          <a href="/review/delete/<%= review.review_id %>" class="btn-small btn-danger">Delete</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } else { %>
+  <p class="no-reviews">You haven't written any reviews yet.</p>
+  <p><a href="/inv/type/1" class="btn-primary">Browse Vehicles to Review</a></p>
+<% } %>

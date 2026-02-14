@@ -1,0 +1,75 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<% if (errors) { %>
+  <ul class="notice">
+   <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+<% } %>
+
+<form id="addReviewForm" action="/review/add" method="post">
+  <fieldset>
+    <legend>Leave Your Review</legend>
+    
+    <label for="review_rating">Rating (1-5 stars):</label>
+    <select name="review_rating" id="review_rating" required>
+      <option value="">Select a rating</option>
+      <option value="5" <%= review_rating == 5 ? 'selected' : '' %>>★★★★★ (5 stars - Excellent)</option>
+      <option value="4" <%= review_rating == 4 ? 'selected' : '' %>>★★★★☆ (4 stars - Very Good)</option>
+      <option value="3" <%= review_rating == 3 ? 'selected' : '' %>>★★★☆☆ (3 stars - Good)</option>
+      <option value="2" <%= review_rating == 2 ? 'selected' : '' %>>★★☆☆☆ (2 stars - Fair)</option>
+      <option value="1" <%= review_rating == 1 ? 'selected' : '' %>>★☆☆☆☆ (1 star - Poor)</option>
+    </select>
+    
+    <label for="review_text">Your Review:</label>
+    <textarea name="review_text" id="review_text" rows="6" required 
+              minlength="10" maxlength="1000" 
+              placeholder="Share your thoughts about this vehicle (minimum 10 characters)..."><%= review_text %></textarea>
+    <p class="char-count">Characters: <span id="charCount">0</span>/1000</p>
+    
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+    
+    <button type="submit" class="btn-primary">Submit Review</button>
+    <a href="/inv/detail/<%= inv_id %>" class="btn-secondary">Cancel</a>
+  </fieldset>
+</form>
+
+<script>
+  // Character counter for review text
+  const reviewText = document.getElementById('review_text');
+  const charCount = document.getElementById('charCount');
+  
+  reviewText.addEventListener('input', function() {
+    charCount.textContent = this.value.length;
+  });
+  
+  // Initialize character count on page load
+  charCount.textContent = reviewText.value.length;
+  
+  // Client-side validation
+  document.getElementById('addReviewForm').addEventListener('submit', function(e) {
+    const text = reviewText.value.trim();
+    const rating = document.getElementById('review_rating').value;
+    
+    if (text.length < 10) {
+      e.preventDefault();
+      alert('Review must be at least 10 characters long.');
+      return false;
+    }
+    
+    if (text.length > 1000) {
+      e.preventDefault();
+      alert('Review must not exceed 1000 characters.');
+      return false;
+    }
+    
+    if (!rating || rating < 1 || rating > 5) {
+      e.preventDefault();
+      alert('Please select a rating between 1 and 5 stars.');
+      return false;
+    }
+  });
+</script>

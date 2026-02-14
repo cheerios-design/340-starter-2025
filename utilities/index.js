@@ -108,4 +108,78 @@ Util.buildClassificationList = async function (classification_id = null) {
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+/* **************************************
+* Build reviews display HTML
+* ************************************ */
+Util.buildReviewsDisplay = function(reviews, accountData, inv_id){
+  let display = '<div id="reviews-section">'
+  display += '<h2>Customer Reviews</h2>'
+  
+  if(reviews && reviews.length > 0){
+    // Calculate average rating
+    let totalRating = 0
+    reviews.forEach(review => {
+      totalRating += review.review_rating
+    })
+    let avgRating = (totalRating / reviews.length).toFixed(1)
+    
+    display += '<div class="reviews-summary">'
+    display += '<p class="avg-rating"><strong>Average Rating:</strong> '
+    for(let i = 0; i < Math.floor(avgRating); i++) {
+      display += '★'
+    }
+    if(avgRating % 1 >= 0.5) {
+      display += '★'
+    }
+    for(let i = Math.ceil(avgRating); i < 5; i++) {
+      display += '☆'
+    }
+    display += ' (' + avgRating + '/5 from ' + reviews.length + ' review' + (reviews.length > 1 ? 's' : '') + ')</p>'
+    display += '</div>'
+    
+    display += '<div class="reviews-list">'
+    reviews.forEach(review => {
+      display += '<div class="review-item">'
+      display += '<div class="review-header">'
+      display += '<p class="reviewer-name"><strong>' + review.account_firstname + '</strong></p>'
+      display += '<p class="review-date">' + new Date(review.review_date).toLocaleDateString() + '</p>'
+      display += '</div>'
+      display += '<div class="review-rating">'
+      for(let i = 0; i < review.review_rating; i++) {
+        display += '★'
+      }
+      for(let i = review.review_rating; i < 5; i++) {
+        display += '☆'
+      }
+      display += ' (' + review.review_rating + '/5)'
+      display += '</div>'
+      display += '<p class="review-text">' + review.review_text + '</p>'
+      
+      // Show edit/delete buttons if user owns this review
+      if(accountData && accountData.account_id === review.account_id) {
+        display += '<div class="review-actions">'
+        display += '<a href="/review/edit/' + review.review_id + '" class="btn-small">Edit</a>'
+        display += '<a href="/review/delete/' + review.review_id + '" class="btn-small btn-danger">Delete</a>'
+        display += '</div>'
+      }
+      display += '</div>'
+    })
+    display += '</div>'
+  } else {
+    display += '<p class="no-reviews">No reviews yet. Be the first to review this vehicle!</p>'
+  }
+  
+  // Add review button (only if logged in)
+  if(accountData) {
+    display += '<div class="add-review-btn">'
+    display += '<a href="/review/add/' + inv_id + '" class="btn-primary">Write a Review</a>'
+    display += '</div>'
+  } else {
+    display += '<p class="login-prompt"><a href="/account/login">Log in</a> to write a review.</p>'
+  }
+  
+  display += '</div>'
+  return display
+}
+
 module.exports = Util
